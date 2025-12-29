@@ -1,0 +1,125 @@
+/*  ===== 整站文字設定 ===== */
+@use './breakpoints' as *;
+@use './mixins' as *;
+
+body{
+    // 基礎字體 font-size , font-weight , letter-spacing: , line-height;
+    @include d-fontF;
+    @include fz(16);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 150% */
+    letter-spacing: 1px;
+    color: var(--color-black);
+
+    // default color
+    --color-black: #1F1F1F;
+    --color-white: #FFFFFF;
+    --color-grey: #5C5C5C;
+    // customize color
+    --color-main: #29A86F;
+    --color-background: linear-gradient(87deg, #177338 -17.96%, #4CA164 95.81%);
+}
+
+/*  ===== 整站標題設定 ===== */
+.title-main-share{
+    @include d-fontF;
+    @include fz(32);
+    @include ls(2,32);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--color-black);
+
+    @include media-down(jumbo){
+        @include fz(30);
+    }
+
+    @include media-down(lg){
+        @include fz(28);
+    }
+
+    @include media-down(xs){
+        @include fz(24);
+    }
+
+    &.center {
+        text-align: center;
+    }
+}
+
+.title-medium-share{
+    @include d-fontF;
+    @include fz(24);
+    font-weight: 700;
+    @include ls( 1,24);
+    line-height: normal;
+    color: var(--color-grey);
+
+
+    @include media-down(lg){
+        @include fz(22);
+    }
+
+    @include media-down(xs){
+        @include fz(20);
+    }
+
+    &.center{
+        text-align: center
+    }
+
+}
+
+.title-small-share{
+    @include d-fontF;
+    @include fz(22);
+    @include ls(2,22);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    color: var(--color-black);
+
+    @include media-down(lg){
+        @include fz(20);
+        line-height: 24.8px;
+    }
+
+    @include media-down(sm){
+        @include fz(18);
+    }
+
+    &.center{
+        text-align: center
+    }
+}
+
+.title-en {
+    display: inline-block;
+    @include en-fontF;
+    font-size: 78px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    background: linear-gradient(87deg, rgba(44, 131, 71, 0.50) 0.94%, rgba(44, 131, 71, 0.00) 146.61%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include media-down(lg){
+        @include fz(68);
+        letter-spacing: 3px;
+    }
+
+    @include media-down(sm){
+        @include fz(50);
+    }
+
+    @include media-down(xs){
+        @include fz(42);
+    }
+    
+}

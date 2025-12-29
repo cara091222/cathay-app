@@ -1,0 +1,435 @@
+.hero-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    &-container {
+        @include poa-center;
+        z-index: 3;
+        top: 53%;
+        width: 80%;
+        height: auto;
+        margin: auto;
+        @include d-flex(center, center);
+
+        @include media-down(lg) {
+            flex-direction: column-reverse;
+            top: 50%;
+        }
+
+        @include media-down(sm) {
+            top: 52%;
+            width: 100%;
+            padding: 0px 20px;
+        }
+    }
+
+    // 手機區塊
+    .phone-area {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        height: 700px;
+
+        @include media-down(l) {
+            height: 550px;
+        }
+
+        @include media-down(sm) {
+            height: 430px;
+        }
+
+        @include media-down(xs) {
+            height: 340px;
+        }
+
+        .phone-left {
+            position: absolute;
+            width: 720px;
+            height: auto;
+            top: 26%;
+            left: -10.5%;
+            animation: moveInLeft 1.2s ease-out forwards;
+
+            @include media-down(jumbo) {
+                width: 40vw;
+                left: 6%;
+                top: 32%;
+            }
+
+            @include media-down(lg) {
+                width: 75vw;
+                left: -15%;
+                top: 40%;
+            }
+
+            @include media-down(sm) {
+                width: 95vw;
+                left: -15%;
+                top: 42%;
+            }
+        }
+
+        .phone-right {
+            position: absolute;
+            width: 720px;
+            height: auto;
+            top: -1%;
+            right: -11%;
+            animation: moveInRight 1.2s ease-out 1.2s forwards;
+            opacity: 0;
+
+            @include media-down(jumbo) {
+                width: 40vw;
+                top: 10%;
+                right: -11%;
+            }
+
+            @include media-down(xxl) {
+                right: -12%;
+                top: 12%;
+            }
+
+            @include media-down(lg) {
+                width: 75vw;
+                right: -15%;
+            }
+
+            @include media-down(l) {
+                right: -13%;
+            }
+
+            @include media-down(sm) {
+                width: 95vw;
+                right: -15%;
+                top: 20%;
+            }
+
+            .phone-right-mobile {
+                display: none;
+
+                @include media-down(lg) {
+                    display: block;
+                }
+            }
+
+            .phone-right-desk {
+                display: block;
+
+                @include media-down(lg) {
+                    display: none;
+                }
+            }
+
+        }
+
+        @keyframes moveInLeft {
+            0% {
+                opacity: 0;
+                transform: translate(-100px, -100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes moveInRight {
+            0% {
+                opacity: 0;
+                transform: translate(100px, -100px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        .desc-wrap {
+            position: absolute;
+            bottom: 30%;
+            left: -16%;
+
+            @include media-down(jumbo) {
+                left: 1%;
+            }
+
+            @include media-down(lg) {
+                top: 13%;
+                left: 10%;
+            }
+
+            @include media-down(sm) {
+                top: 15%;
+                left: 12%;
+            }
+
+
+            p {
+                position: relative;
+                font-size: 24px;
+                font-weight: 700;
+                line-height: normal;
+                letter-spacing: 1px;
+                color: #787878;
+
+                @include media-down(jumbo) {
+                    font-size: 20px;
+                }
+
+                @include media-between(l, lg) {
+                    font-size: 28px;
+                }
+
+                @include media-between(md, l) {
+                    font-size: 24px;
+                }
+
+                @include media-down(sm) {
+                    font-size: 18px;
+                }
+
+                @include media-down(xs) {
+                    font-size: 16px;
+                }
+            }
+
+            p+p {
+                margin-top: 40px;
+
+                @include media-down(jumbo) {
+                    margin-top: 20px;
+                }
+
+                @include media-down(l) {
+                    margin-top: 15px;
+                }
+
+                @include media-down(sm) {
+                    margin-top: 10px;
+                }
+            }
+
+            .descA {
+                opacity: 0;
+                left: -15%;
+                animation: moveInA 1s ease-out 2.4s forwards;
+            }
+
+            .descB {
+                opacity: 0;
+                left: 0;
+                animation: moveInA 1s ease-out 3.2s forwards;
+            }
+
+            .descC {
+                opacity: 0;
+                left: 15%;
+                animation: moveInA 1s ease-out 4s forwards;
+            }
+
+            @keyframes moveInA {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-100px);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    // 文字區塊
+    .content {
+        @include d-flex(center, start, column);
+        gap: 15px;
+        width: 100%;
+        max-width: 430px;
+
+        @include media-down(xxl) {
+            max-width: 390px;
+        }
+
+        @include media-down(lg) {
+            align-items: center;
+            max-width: 100%;
+            gap: 5px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-style: normal;
+            font-weight: bolder;
+            line-height: normal;
+            letter-spacing: 1px;
+
+            @include media-down(jumbo) {
+                font-size: 42px;
+            }
+
+            @include media-down(xxl) {
+                font-size: 36px;
+            }
+
+            @include media-between(l, lg) {
+                font-size: 50px;
+            }
+
+            @include media-down(md) {
+                font-size: 32px;
+            }
+        }
+
+        .subtitle {
+            color: var(--color-grey);
+
+            @include media-down(lg) {
+                text-align: center;
+            }
+
+            @include media-between(l, lg) {
+                font-size: 32px;
+            }
+        }
+
+        .btn {
+            display: none;
+            background: var(--color-main);
+            padding: 10px 30px;
+            border-radius: 100px;
+            text-align: center;
+            color: var(--color-white);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 27px;
+            letter-spacing: 1.5px;
+            margin-top: 20px;
+
+            @include media-down(lg) {
+                @include d-flex(center, center);
+
+            }
+
+            @include media-between(md, lg) {
+                font-size: 24px;
+                padding: 15px 40px;
+            }
+
+
+        }
+    }
+
+    // 背景影片
+    .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 1;
+        visibility: visible;
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    }
+
+    // 背景圓圈
+    .hero-circle {
+        width: 100%;
+        max-width: 570px;
+        position: absolute;
+        right: 6rem;
+        top: -12.5rem;
+        z-index: 2;
+
+        @include media-down(jumbo) {
+            max-width: 470px;
+            top: -9rem;
+        }
+
+        @include media-down(xxl) {
+            max-width: 370px;
+            top: -6rem;
+        }
+
+        @include media-down(xl) {
+            right: 0;
+            top: -6rem;
+        }
+
+        @include media-down(md) {
+            max-width: 215px;
+            top: -1rem;
+        }
+    }
+
+    // 滾動提示
+    .scroll-down {
+        position: absolute;
+        right: 40px;
+        bottom: 5rem;
+        z-index: 3;
+        height: auto;
+        @include d-flex(center, center, column);
+        gap: 10px;
+
+        @include media-down(sm) {
+            right: 20px;
+            bottom: 2rem;
+        }
+
+        span {
+            color: var(--color-grey);
+            text-align: center;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            writing-mode: sideways-lr;
+        }
+
+        .line-wrap {
+            width: 4px;
+            height: 130px;
+            background-color: #EFEFEF;
+            border-radius: 100rem;
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 0px;
+                border-radius: 100rem;
+                background-color: var(--color-main);
+                animation: scrollLine 1.5s infinite;
+            }
+
+            @keyframes scrollLine {
+                0% {
+                    height: 0px;
+                    opacity: 1;
+                }
+
+                100% {
+                    height: 130px;
+                    opacity: 1;
+                }
+
+
+            }
+        }
+    }
+
+}

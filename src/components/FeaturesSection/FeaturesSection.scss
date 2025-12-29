@@ -1,0 +1,125 @@
+.features-section {
+    width: 100%;
+    overflow: hidden;
+
+    .features-swiper {
+        width: 100%;
+        max-width: 1035px;
+        margin: auto;
+        padding: 80px 0 80px 0;
+        overflow: hidden;
+
+        @include media-down('xxl') {
+            max-width: 835px;
+            // padding: 60px 0; 
+        }
+
+        @include media-down('l') {
+            max-width: 635px;
+            // padding: 60px 0; 
+        }
+
+        // @include media-down('sm') {
+        //     max-width: 350px;
+        //     // padding: 60px 0; 
+        // }
+    }
+
+    .features-slider {
+        @include d-flex(flex-start, center, column);
+        position: relative;
+        transition: transform 0.4s ease;
+
+        // 預設文字隱藏
+        .title-main-share,
+        .title-medium-share {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            text-align: center;
+            width: 100%; // 確保文字不換行過多
+        }
+
+        &.swiper-slide-active {
+
+            .title-main-share,
+            .title-medium-share {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .icon-wrap {
+                opacity: 1;
+                transform: scale(1); // Active 時恢復大小
+                transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+            }
+        }
+
+        .img {
+            width: 80%; // 在 Slide 容器中的比例
+            max-width: 280px;
+            position: relative;
+            margin-top: 20px;
+
+            .mockup {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                border-radius: 30px;
+                box-shadow: 0 7px 22px 0 rgba(0, 0, 0, 0.21);
+            }
+        }
+
+        .icon-wrap {
+            position: absolute;
+            opacity: 0;
+            transform: scale(0.8);
+
+            // 使用 clamp 讓 Icon 大小自動隨螢幕寬度縮放
+            // 例如：最小 80px，隨螢幕縮放，最大照你設定的數值
+            width: clamp(80px, 15vw, 252px);
+
+            .icon-img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    .swiper-pagination-bullet {
+        width: 13px;
+        height: 13px;
+    }
+
+    .swiper-pagination-bullet-active {
+        position: relative;
+
+        &::after {
+            content: '';
+            @include poa-center;
+            width: 40px;
+            height: 40px;
+            border-radius: 100rem;
+            border: 1px solid var(--color-main);
+            box-sizing: border-box;
+        }
+    }
+
+    --swiper-pagination-color: var(--color-main); 
+
+    // 修改未選中點的顏色
+    --swiper-pagination-bullet-inactive-color:#EBEDEB;
+
+    // 修改未選中點的透明度
+    --swiper-pagination-bullet-inactive-opacity: 1;
+
+    // 修改點與點之間的間距
+    --swiper-pagination-bullet-horizontal-gap: 15px;
+}
+
+// 響應式微調
+@include media-down('md') {
+    .features-section .features-slider .img {
+        width: 65%; // 手機版讓中間主圖稍微明顯一點
+    }
+}

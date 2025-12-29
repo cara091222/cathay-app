@@ -1,0 +1,98 @@
+@use './shared' as *;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*  ===== 整站基本設定 ===== */
+body, figure, 
+h1, h2, h3, h4, h5, h6,
+ol, p, ul{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --vh: 100vh;
+}
+
+body{
+    // chrome文字平滑化
+    -webkit-font-smoothing: antialiased;
+
+    // 解決觸控螢幕擊放大問題
+    touch-action: manipulation;
+
+    // 解決firefox 字體粗度問題
+    -moz-osx-font-smoothing: grayscale;
+    --admin-bar-height: 0px;
+
+    // 全站列點樣式消除
+    ul,i,ol {
+        list-style: none;
+        list-style-position: inside;
+    }
+
+    ul,li,ol{
+        &.list-style-none{
+            list-style-type: none;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+}
+
+// elementor圖片設定
+.elementor{
+    .img-cover{
+        img{
+            height: 100%;
+        }
+    }
+
+    .iframe-cover{
+        iframe{
+            height: 100%;
+        }
+    }
+}
+
+/*  ===== 媒體設定 ===== */
+// 如果 <img> 需要等比縮放外面固定加上此 class , 寬高比例依照不同需求用上層 class 區分另外寫
+.img-cover{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    transition: all .5s ease;
+
+    img{
+        @include poa-center;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// video & iframe 用 , 邏輯同上
+.iframe-cover, .video-cover{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+
+    video, iframe{
+        @include poa-center;
+        object-fit: cover;
+        width: 100%; 
+        height: 100%;
+    }
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

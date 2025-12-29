@@ -1,0 +1,123 @@
+// 預設字體
+@mixin d-fontF{
+    font-family: 'Noto Sans TC', 'Montserrat', 'PingFang TC' , '蘋果儷中黑', 'sans-serif' , Arial;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+// 標題英文字體
+@mixin en-fontF{
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 250;
+    font-style: normal;
+    font-display: swap;
+}
+
+// flex
+@mixin d-flex($j-c: flex-start, $a-i: stretch, $d: row){
+    display: flex;
+    justify-content: $j-c;
+    align-items: $a-i;
+    flex-direction: $d
+}
+
+// 文字：引用方式: @include fz(16) 放font-size的px值
+@mixin fz($size){
+    font-size: calc((#{$size} / 16) * 1rem);
+}
+
+//  ===== firefox font weight bold 有需要的話再設定為 normal (firefox在小字為粗體的時候會過粗) ===== 
+@mixin fw-b{
+    font-weight: bold;
+    // @-moz-document url-prefix(){
+    //     font-weight: normal;
+    // }
+}
+
+// 引用方式: @include ls(15,22) 前面放letter-spacing的px值, 後面放font-size的px值
+@mixin ls($ls, $fz){
+    letter-spacing: calc((#{$ls} / #{$fz}) * 1rem);
+}
+
+// 引用方式: @include lh(15,22) 前面放line-height的px值, 後面放font-size的px值
+@mixin lh($lh, $fz){
+    line-height: calc(#{$lh} / #{$fz});
+}
+
+// 引用方式：@include ellipsis(2); 文字超過幾行就隱藏
+@mixin ellipsis($line: 1){
+    overflow : hidden;
+    text-overflow: ellipsis; 
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    text-align: left
+}
+
+// 絕對位置 -- 置中
+@mixin poa-center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+}
+
+/*  ===== media定義 ===== */
+// 觸控裝置
+@mixin is-touch{
+    @media (hover: none){
+      @content;   
+    }
+}
+
+// 非觸控裝置
+@mixin not-touch{
+    @media (hover: hover){
+      @content;   
+    }
+}
+//   ===== 捲軸樣式設定 ===== 
+@mixin scrollbar{
+    &::-webkit-scrollbar{
+        width: 7px;
+    }
+    &::-webkit-scrollbar-button{
+        width: 7px;
+        height: 5px;
+    }
+    &::-webkit-scrollbar-track{
+        background-color: rgba(#eee, 0);
+        border: 0;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: rgba(#d8d8d8, 0.3);
+        border: 0;
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover{
+        background-color: rgba(#d8d8d8, 0.5);
+    }
+}
+
+// 隱藏捲軸
+@mixin scrollbar-hidden{
+    &::-webkit-scrollbar-track{
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb:hover{
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

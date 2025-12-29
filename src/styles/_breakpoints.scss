@@ -1,0 +1,57 @@
+@use "sass:map";
+@use './mixins' as *;
+
+$breakpoint_max: 2560px;
+$breakpoint_st: 1920px;
+$breakpoint_jumbo: 1600px;
+$breakpoint_xxl: 1440px;
+$breakpoint_xl: 1280px;
+$breakpoint_lg: 1025px;
+$breakpoint_l: 992px;
+$breakpoint_md: 768px;
+$breakpoint_sm: 576px;
+$breakpoint_xs: 414px;
+$breakpoint_tiny: 376px;
+
+$breakpoints: (
+    'max': $breakpoint_max,
+    'st': $breakpoint_st,
+    'jumbo': $breakpoint_jumbo,
+    'xxl': $breakpoint_xxl,
+    'xl': $breakpoint_xl,
+    'l': $breakpoint_l,
+    'lg': $breakpoint_lg,
+    'md': $breakpoint_md,
+    'sm': $breakpoint_sm,
+    'xs': $breakpoint_xs,
+    'tiny': $breakpoint_tiny,
+) !default;
+
+/*  ===== 往上適應 ===== */
+// 引用方式: @include media-up(sm){...}
+@mixin media-up($breakpoint) {
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
+    @media (min-width: $breakpoint-value) {
+    @content;
+    }
+}
+
+/*  ===== 往下適應 ===== */
+// 引用方式: @include media-down(sm){...}
+@mixin media-down($breakpoint) {
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
+    @media (max-width: ($breakpoint-value - 0.02)) {
+    @content;
+    }
+}
+
+/*  ===== 範圍內適應 ===== */
+// 引用方式: @include media-between(sm, md){...}
+@mixin media-between($lower, $upper) {
+    $lower-breakpoint: map.get($breakpoints, $lower);
+    $upper-breakpoint: map.get($breakpoints, $upper);
+
+    @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 0.02)) {
+    @content;
+    }
+}
