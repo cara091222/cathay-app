@@ -2,7 +2,7 @@ import React from "react";
 import "./HeroSection.scss";
 // 圖片
 import PhoneLeft from "../../assets/images/phone_left.webp";
-import PhoneRight from "../../assets/images/phone_Right.webp";
+import PhoneRight from "../../assets/images/phone_right.webp";
 import PhoneRightMobile from "../../assets/images/phone_right_mobile.webp";
 import HeroCircle from "../../assets/images/circle1.png";
 
