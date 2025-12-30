@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./HeroSection.scss";
-// 圖片
+
+// 圖片導入
 import PhoneLeft from "../../assets/images/phone_left.webp";
 import PhoneRight from "../../assets/images/phone_right.webp";
 import PhoneRightMobile from "../../assets/images/phone_right_mobile.webp";
 import HeroCircle from "../../assets/images/circle1.png";
 
 const HeroSection = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // 1. 強制靜音（行動裝置自動播放的必備條件）
+      video.muted = true;
+      
+      // 2. 嘗試播放
+      const playPromise = video.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // 如果自動播放被瀏覽器攔截（如省電模式），在此處理
+          console.warn("影片自動播放被攔截，這通常發生在省電模式下:", error);
+        });
+      }
+    }
+  }, []);
+
   return (
     <div className="hero-section">
       <div className="hero-section-container">
@@ -27,20 +48,25 @@ const HeroSection = () => {
         <div className="content">
           <h1 className="title">國泰人壽App</h1>
           <h2 className="subtitle title-main-share">
-            提供您簡單、聰明又安全的<br></br>數位保險體驗
+            提供您簡單、聰明又安全的<br />數位保險體驗
           </h2>
-          <a href="" className="btn">立即點擊下載</a>
+          <a href="/" className="btn">立即點擊下載</a>
         </div>
       </div>
+
+      {/* 背景影片 */}
       <video
+        ref={videoRef}
         src="/assets/videos/wave_bg.mp4"
-        autoPlay 
-        muted // 鏡音播放
-        playsInline // 防止在 iOS 上跳出全螢幕
+        muted
+        playsInline // 關鍵：防止 iOS 自動跳出全螢幕播放器
+        autoPlay    // 備援屬性
         preload="auto"
         className="hero-video"
         disablePictureInPicture
+        // 注意：這裡移除了 loop
       />
+
       <div className="hero-circle">
         <img src={HeroCircle} alt="Decorative Circle" />
       </div>
