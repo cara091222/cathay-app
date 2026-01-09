@@ -7,7 +7,7 @@
         margin: auto;
         padding: 80px 0 80px 0;
         overflow: hidden;
-
+        
         @include media-down('sm') {
             padding: 60px 0;
         }
@@ -19,6 +19,8 @@
         position: relative;
         transition: transform 0.4s ease;
         max-width: 410px;
+        transform-origin: center center;
+        backface-visibility: hidden;
 
         @include media-down('lg') {
             max-width: 270px;
@@ -82,7 +84,7 @@
             }
 
             @include media-down('sm') {
-                margin-top: 25px;
+                margin-top: 20px;
                 width: 60%;
             }
 

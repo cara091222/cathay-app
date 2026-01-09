@@ -74,17 +74,12 @@ body{
 
 .title-small-share{
     @include d-fontF;
-    @include fz(22);
-    @include ls(2,22);
+    @include fz(20);
+    @include ls(1,20);
     font-style: normal;
-    font-weight: 700;
-    line-height: 28px;
-    color: var(--color-black);
-
-    @include media-down(lg){
-        @include fz(20);
-        line-height: 24.8px;
-    }
+    font-weight: 400;
+    line-height: 27px;
+    color: var(--color-grey);
 
     @include media-down(sm){
         @include fz(18);

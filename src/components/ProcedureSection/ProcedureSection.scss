@@ -1,0 +1,462 @@
+.procedure-section {
+    &-container {
+        @include d-flex(center, center, column);
+        margin: 0 auto;
+        padding: 120px 50px;
+
+        @include media-down("xl") {
+            padding: 100px 30px;
+        }
+
+        @include media-down("sm") {
+            padding: 70px 20px;
+        }
+    }
+
+    .desktop-model {
+        display: block;
+
+        @include media-down("xx") {
+            display: none !important;
+        }
+    }
+
+    .mobile-model {
+        display: none !important;
+
+        @include media-down("xx") {
+            display: block !important;
+            position: relative;
+        }
+    }
+
+    .procedure-layout {
+        width: 100%;
+        max-width: 1290px;
+        height: auto;
+        margin-top: 50px;
+        border-radius: 80px;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 31px 0 rgba(0, 0, 0, 0.1);
+        padding: 100px;
+        @include d-flex(space-between, center);
+        position: relative;
+
+        @include media-down("jumbo") {
+            padding: 60px;
+            width: 80vw;
+            min-height: 525px;
+        }
+
+        @include media-down("xx") {
+            flex-direction: column;
+            background: inherit;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        @include media-down("sm") {
+            width: 100%;
+        }
+    }
+
+    // 桌機步驟區塊
+    .procedure-left {
+        width: 100%;
+        max-width: 626px;
+        height: 100%;
+        position: relative;
+
+        // 第一層分類
+        .procedure-step {
+            width: 100%;
+            z-index: 1;
+
+            &-header {
+                width: 100%;
+                padding: 20px 30px;
+                border-radius: 25px;
+                background-color: inherit;
+                border: none;
+                @include d-flex(center, flex-start, column);
+                transition: all 0.3s ease;
+
+                @include media-down("xx") {
+                    padding: 10px 15px;
+                    border-radius: 10px;
+                }
+
+                &.active {
+                    background: var(--main-green, #29a86f);
+                    box-shadow: 0 4px 10px 0 rgba(2, 131, 61, 0.3);
+
+                    @include media-down("xx") {
+                        width: auto;
+                    }
+
+                    .title-arrow h3 {
+                        color: var(--color-white);
+                    }
+
+                    p {
+                        color: var(--color-white);
+                    }
+
+                    svg circle,
+                    svg path {
+                        stroke: var(--color-white);
+                        transition: stroke 0.3s ease;
+                    }
+                }
+
+                &:hover {
+                    background: var(--main-green, #29a86f);
+                    box-shadow: 0 4px 10px 0 rgba(2, 131, 61, 0.3);
+
+                    .title-arrow h3 {
+                        color: var(--color-white);
+                    }
+
+                    p {
+                        color: var(--color-white);
+                    }
+
+                    svg circle,
+                    svg path {
+                        stroke: var(--color-white);
+                        transition: stroke 0.3s ease;
+                    }
+                }
+
+                .title-arrow {
+                    @include d-flex(space-between, center);
+                    max-width: 215px;
+                    width: 100%;
+                    padding-bottom: 5px;
+
+                    @include media-down("xx") {
+                        max-width: 100%;
+                    }
+
+                    h3 {
+                        color: var(--color-black);
+                    }
+                }
+
+                p {
+                    text-align: left;
+                }
+            }
+        }
+
+        // 展開內容
+        .procedure-step-body {
+
+            // 第二層步驟
+            .procedure-detail-tabs {
+                @include d-flex(flex-start, flex-start, column);
+                gap: 12px;
+                padding: 50px 0;
+
+                .procedure-detail-tab {
+                    border: none;
+                    background-color: inherit;
+                    color: var(--sec, #5c5c5c);
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 1px;
+                    width: 300px;
+                    @include d-flex(space-between, center);
+
+                    &.active {
+                        color: var(--color-main);
+                        font-weight: 700;
+
+                        svg path {
+                            stroke: var(--color-main);
+                        }
+                    }
+
+                    .title-wrap {
+                        @include d-flex(center, center);
+                    }
+                }
+            }
+
+            .back-button {
+                background-color: inherit;
+                border: none;
+                @include d-flex(center, center);
+                font-size: 18px;
+                gap: 10px;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+
+    // 圖片區塊
+    .procedure-right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+
+        @include media-down("jumbo") {
+            flex: 0.8;
+        }
+
+        .image-container {
+            max-width: 595px;
+            width: 100%;
+            height: 610px;
+            position: relative;
+            @include d-flex(center, center);
+            gap: 25px;
+
+            @include media-down("jumbo") {
+                height: 500px;
+                gap: 15px;
+            }
+
+            @include media-down("xx") {
+                margin-top: 20px;
+            }
+
+            @include media-down("sm") {
+                height: 375px;
+            }
+
+            img {
+                flex: 1;
+                object-fit: contain;
+                max-width: 280px;
+                height: auto;
+                max-height: 100%;
+                border-radius: 30px;
+                box-shadow: 0 7px 22px 0 rgba(0, 0, 0, 0.21);
+                // 防止圖片載入前的閃爍
+                opacity: 0;
+
+                @include media-down("jumbo") {
+                    max-width: 220px;
+                    border-radius: 20px;
+                }
+
+                @include media-down("sm") {
+                    max-width: 165px;
+                    border-radius: 15px;
+                }
+
+                &.fade-in {
+                    animation: fadeIn 0.5s ease-out forwards;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(10px); // 增加一點位移感，比單純 opacity 更流暢
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+
+    // 手機版步驟區塊
+    .mobile-model {
+        @include media-down('sm') {
+            margin-top: 15px;
+        }
+
+        .procedure-tabs-nav {
+            position: relative; 
+            @include d-flex(center,center);
+            overflow-x: auto;
+            gap: 5px; 
+            padding: 10px ;
+
+            // 隱藏捲軸 (依需求)
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            @include media-down('sm') {
+                justify-content: flex-start;
+            }
+
+            // 4. 滑動底色塊樣式
+            .active-bg-slider {
+                position: absolute;
+                top: 10px; 
+                left: 0;
+                height: calc(100% - 20px); 
+                background: var(--color-main);
+                box-shadow: 0 4px 10px 0 rgba(2, 131, 61, 0.3);
+                border-radius: 10px;
+                z-index: 1; 
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+                pointer-events: none;
+            }
+
+            .procedure-tab-item {
+                position: relative;
+                z-index: 2;
+                background: transparent; 
+                transition: color 0.3s ease;
+                border: none;
+                background-color: inherit;
+                word-break: keep-all;
+                white-space: nowrap;
+                padding: 10px 15px;
+
+                &.active {
+                    .title-arrow h3 {
+                        color: var(--color-white);
+                    }
+                }
+
+                .title-medium-share {
+                    color: var(--color-black);
+                }
+            }
+        }
+
+        // 內容
+        .procedure-content-body {
+            width: 100%;
+            max-width: 740px;
+            margin: auto;
+
+            .step-description-full {
+                text-align: center;
+                font-size: 18px;
+                color: var(--color-grey);
+                padding: 15px 0 30px 0;
+                margin: auto;
+
+                @include media-down ('sm') {
+                    max-width: 263px;
+                    width: 100%;
+                    padding: 10px 0 25px 0;
+                }
+            }
+
+            .body-main-layout {
+                border-radius: 30px;
+                background: rgba(255, 255, 255, 0.30);
+                padding: 50px;
+                box-shadow: 0 4px 31px 0 rgba(0, 0, 0, 0.10);
+
+                @include media-down('sm') {
+                    padding: 20px;
+                }
+            }
+
+            .procedure-detail-tabs {
+                @include d-flex(flex-start, flex-start);
+                overflow-x: scroll;
+                position: relative;
+                padding-bottom: 8px;
+                // border-bottom: 2px solid #EFEFEF;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                // 隱藏預設滾條
+
+                .procedure-detail-tab {
+                    border: none;
+                    background-color: inherit;
+                    color: var(--sec, #5c5c5c);
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: 1px;
+                    width: 100%;
+                    @include d-flex(space-between, center);
+
+                    &.active {
+                        color: var(--color-main);
+                        font-weight: 700;
+
+                        svg path {
+                            stroke: var(--color-main);
+                        }
+
+                        .title-wrap>.unit-number {
+                            background: var(--color-main);
+                            color: var(--color-white);
+                            border-color: var(--color-main);
+                        }
+                    }
+
+                    &:hover:not(.active) {
+                        color: var(--color-main);
+                        font-weight: 700;
+
+                        .title-wrap>.unit-number {
+                            color: var(--color-main);
+                            border-color: var(--color-main);
+                            background: transparent;
+                        }
+                    }
+
+                    .title-wrap {
+                        @include d-flex(center, center);
+                        word-break: keep-all;
+                        white-space: nowrap;
+                        gap: 5px;
+
+                        .unit-number {
+                            color: var(--color-black);
+                            font-family: Montserrat;
+                            font-size: 14px;
+                            font-weight: 500;
+                            line-height: 24px;
+                            letter-spacing: 1px;
+                            width: 24px;
+                            height: 24px;
+                            border: 1px solid var(--color-black);
+                            border-radius: 100px;
+                            @include d-flex(center, center);
+                        }
+                    }
+                }
+
+                // 移動滾條
+                .tab-indicator {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 3px;
+                    background-color: var(--color-main);
+                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+                    z-index: 2;
+                }
+
+                // 滾條底色
+                .scrollbar-line {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    background: #EFEFEF;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}

@@ -18,4 +18,10 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    host: '0.0.0.0', // 允許外部設備連接
+    port: 5173, // 預設端口，可根據需要修改
+    strictPort: false, // 如果端口被占用，自動嘗試下一個可用端口
+    open: false, // 不自動打開瀏覽器
+  },
 })

@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from "react";
 import Swiper from "swiper";
 import { Pagination, Autoplay } from "swiper/modules";
 
-// 導入樣式 (React 環境建議導入基礎樣式)
+// 導入樣式 
 import "swiper/css";
 import "swiper/css/pagination";
 import "./FeaturesSection.scss";
 
-// 圖片導入 (保持不變)
+// 圖片導入
 import Feature1 from "../../assets/features/features1.webp";
 import Icon1 from "../../assets/features/features1_icon.webp";
 import Feature2 from "../../assets/features/features2.webp";
