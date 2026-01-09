@@ -90,6 +90,23 @@ function ProcedureSection() {
     }
   }, [activeStep, isDesktop]);
 
+  // 手機版主選單箭頭設定
+  const handleArrowClick = (direction) => {
+    const totalSteps = INSTRUCTIONS.length;
+
+    if (direction === "next") {
+      // 往右點：如果不是最後一個，就跳下一個；如果是最後一個，可以選擇循環或不動
+      if (activeStep < totalSteps - 1) {
+        toggleStep(activeStep + 1);
+      }
+    } else if (direction === "prev") {
+      // 往左點：如果不是第一個，就跳上一個
+      if (activeStep > 0) {
+        toggleStep(activeStep - 1);
+      }
+    }
+  };
+
   // 內容
   const INSTRUCTIONS = [
     {
@@ -405,33 +422,77 @@ function ProcedureSection() {
         {/* 手機版 */}
         <div className="procedure-layout mobile-model">
           {/* ---------------- 1. 第一層 TAB 導覽列 ---------------- */}
-          <div
-            className="procedure-tabs-nav"
-            ref={mobileNavTabsRef}
-            style={{ position: "relative" }}
-          >
-            {/* 3. 新增：滑動底色塊 */}
+          <div className="nav-container-wrapper">
+            {/* 左箭頭：連動到前一個 Tab */}
             <div
-              className="active-bg-slider"
-              style={{
-                transform: `translateX(${navIndicatorStyle.left}px)`,
-                width: `${navIndicatorStyle.width}px`,
-              }}
-            />
-
-            {INSTRUCTIONS.map((step, stepIndex) => (
-              <button
-                key={`tab-${stepIndex}`}
-                className={`procedure-tab-item ${
-                  activeStep === stepIndex ? "active" : ""
-                }`}
-                onClick={() => toggleStep(stepIndex)}
+              className={`arrow-left ${activeStep === 0 ? "is-hidden" : ""}`}
+              onClick={() => activeStep > 0 && handleArrowClick("prev")}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
               >
-                <div className="title-arrow">
-                  <h3 className="title-medium-share">{step.title}</h3>
-                </div>
-              </button>
-            ))}
+                <path
+                  d="M9 1L1 9L9 17"
+                  stroke="#1F1F1F"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
+            <div className="procedure-tabs-nav" ref={mobileNavTabsRef}>
+              {/* 綠色滑動底色塊 */}
+              <div
+                className="active-bg-slider"
+                style={{
+                  transform: `translateX(${navIndicatorStyle.left}px)`,
+                  width: `${navIndicatorStyle.width}px`,
+                }}
+              />
+              {INSTRUCTIONS.map((step, stepIndex) => (
+                <button
+                  key={`tab-${stepIndex}`}
+                  className={`procedure-tab-item ${
+                    activeStep === stepIndex ? "active" : ""
+                  }`}
+                  onClick={() => toggleStep(stepIndex)}
+                >
+                  <div className="title-arrow">
+                    <h3 className="title-medium-share">{step.title}</h3>
+                  </div>
+                </button>
+              ))}
+            </div>
+            {/* 右箭頭：連動到下一個 Tab */}
+            <div
+              className={`arrow-right ${
+                activeStep === INSTRUCTIONS.length - 1 ? "is-hidden" : ""
+              }`}
+              onClick={() =>
+                activeStep < INSTRUCTIONS.length - 1 && handleArrowClick("next")
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="18"
+                viewBox="0 0 10 18"
+                fill="none"
+              >
+                <path
+                  d="M1 1L9 9L1 17"
+                  stroke="#1F1F1F"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </div>
           {/* ---------------- 2. 內容展示區 (Body) ---------------- */}
           {activeStep !== null && (
@@ -470,8 +531,8 @@ function ProcedureSection() {
                       width: `${indicatorStyle.width}px`,
                     }}
                   />
-                  <div className="scrollbar-line"></div>
                 </div>
+                <div className="scrollbar-line"></div>
                 {/* 圖片區塊 */}
                 <div className="procedure-right">
                   <div className="image-container">
