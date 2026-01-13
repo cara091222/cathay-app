@@ -1,4 +1,5 @@
 .procedure-section {
+    position: relative;
     &-container {
         @include d-flex(center, center, column);
         margin: 0 auto;
@@ -9,7 +10,7 @@
         }
 
         @include media-down("sm") {
-            padding: 70px 20px;
+            padding: 50px 20px;
         }
     }
 
@@ -34,7 +35,7 @@
         width: 100%;
         max-width: 1290px;
         height: auto;
-        margin-top: 50px;
+        margin-top: 40px;
         border-radius: 80px;
         background: rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 31px 0 rgba(0, 0, 0, 0.1);
@@ -57,7 +58,9 @@
 
         @include media-down("sm") {
             width: 100%;
+            margin-top: 10px;
         }
+
     }
 
     // 桌機步驟區塊
@@ -286,10 +289,7 @@
 
     // 手機版步驟區塊
     .mobile-model {
-        @include media-down("sm") {
-            margin-top: 15px;
-        }
-
+       
         .procedure-tabs-nav {
             position: relative;
             @include d-flex(center, center);
@@ -467,14 +467,7 @@
                     }
 
                     &:hover:not(.active) {
-                        color: var(--color-main);
-                        font-weight: 700;
-
-                        .title-wrap>.unit-number {
-                            color: var(--color-main);
-                            border-color: var(--color-main);
-                            background: transparent;
-                        }
+                        opacity: 0.8;
                     }
 
                     .title-wrap {
@@ -522,6 +515,56 @@
                 background: #efefef;
                 z-index: 1;
             }
+        }
+    }
+
+    // 背景
+    .procedure-bg {
+        position: absolute;
+        bottom: -30%;
+        z-index: -1;
+        transform: rotate(180deg);
+        width: 100%;
+        height: 100%;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    .procedure-circle {
+        position: absolute;
+        bottom: -21rem;
+        right: 7%;
+        width: 100%;
+        max-width: 490px;
+        height: 100%;
+        z-index: -1;
+
+        @include media-down('jumbo') {
+            max-width: 430px;
+            right: 3%;
+        }
+
+        @include media-down('lg') {
+            max-width: 330px;
+            right: 3%;
+        }
+
+        @include media-down('sm') {
+            max-width: 230px;
+            right: -4%;
+            bottom: -17rem;
+        }
+
+        @include media-down('xs') {
+            max-width: 180px;
+            right: -4%;
+            bottom: -15rem;
+        }
+
+        img {
+            object-fit: contain;
         }
     }
 }

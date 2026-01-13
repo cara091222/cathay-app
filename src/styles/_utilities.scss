@@ -5,7 +5,7 @@
 .container-share {
     position: relative;
     width: auto;
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 0px 50px;
 
@@ -27,7 +27,7 @@
     }
 
     @include media-down(sm) {
-        padding: 70px 0 ;
+        padding: 50px 0 ;
     }
 }
 
@@ -39,6 +39,6 @@
     }
 
     @include media-down(sm) {
-        padding: 50px;
+        padding: 40px;
     }
 }

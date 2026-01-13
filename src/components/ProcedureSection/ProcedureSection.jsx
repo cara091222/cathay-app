@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ProcedureSection.scss";
+import ProcedureBg from "../../assets/features/features_bg.svg";
+import ProcedureCircle from "../../assets/images/circle3.png";
 
 // 註冊流程
 import DefaultImg from "../../assets/procedure/QRcode.webp";
@@ -263,7 +265,7 @@ function ProcedureSection() {
   };
 
   return (
-    <section className="procedure-section">
+    <div className="procedure-section">
       <div className="procedure-section-container">
         <h2 className="title-main-share">操作流程說明</h2>
         {/* 桌機版 */}
@@ -566,7 +568,13 @@ function ProcedureSection() {
           )}
         </div>
       </div>
-    </section>
+      <div className="procedure-bg">
+        <img src={ProcedureBg} alt="" />
+      </div>
+      <div className="procedure-circle">
+        <img src={ProcedureCircle} alt="" />
+      </div>
+    </div>
   );
 }
 

@@ -37,7 +37,7 @@ body {
 
     // 全站列點樣式消除
     ul,
-    i,
+    li,
     ol {
         list-style: none;
         list-style-position: inside;
@@ -137,8 +137,8 @@ img {
         transition: background 0.3s ease;
 
         @include media-down('sm') {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
         }
     }
 
@@ -157,8 +157,8 @@ img {
             pointer-events: none; 
 
             @include media-down('sm') {
-                width: 22px;
-                height: 22px;
+                width: 25px;
+                height: 25px;
             }
         }
     }
