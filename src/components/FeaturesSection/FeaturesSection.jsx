@@ -44,7 +44,7 @@ const FeaturesSection = () => {
       iconStyle: { width: "90%", bottom: "11%", left: "-27%" },
     },
     {
-      title: "保障資訊一目了然",
+      title: "保障資訊一目瞭然",
       subtitle: "讓保障內容更清晰透明",
       img: Feature3,
       icon: Icon3,
@@ -97,7 +97,7 @@ const FeaturesSection = () => {
         autoplay: {
           delay: 2500,
           disableOnInteraction: false, // 用戶操作後不停止自動播放
-          pauseOnMouseEnter: false, // 滑鼠移入時暫停
+          pauseOnMouseEnter: true, // 滑鼠移入時暫停
         },
 
         pagination: {

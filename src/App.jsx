@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection/HeroSection.jsx';
 import FeaturesSection from './components/FeaturesSection/FeaturesSection.jsx';
 import ProcedureSection from './components/ProcedureSection/ProcedureSection.jsx';
 import EventsSection from './components/EventsSection/EventsSection.jsx';
+import FaqSection from './components/FaqSection/FaqSection.jsx';
 
 
 function App() {
@@ -12,9 +13,10 @@ function App() {
     <div className="App">
       <AppHeader />
       <HeroSection />
-      <FeaturesSection/>
+      <FeaturesSection />
       <ProcedureSection />
-      <EventsSection/>
+      <EventsSection />
+      <FaqSection />
     </div>
   )
 }

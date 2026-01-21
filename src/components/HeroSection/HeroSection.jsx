@@ -35,13 +35,13 @@ const HeroSection = () => {
           <div className="phone-left">
             <img src={PhoneLeft} alt="Phone Left" />
           </div>
-          <div className="phone-right">
+          <a href="https://www.cathaylife.com.tw/cathaylife/services/CathayLife-APP" className="phone-right">
             <img src={PhoneRight} alt="Phone Right" className="phone-right-desk" />
             <img src={PhoneRightMobile} alt="Phone Right" className="phone-right-mobile" />
-          </div>
+          </a>
           <div className="desc-wrap">
             <p className="descA">掌握全家人的保單</p>
-            <p className="descB">保障資訊一目了然</p>
+            <p className="descB">保障資訊一目瞭然</p>
             <p className="descC">保單借款隨借隨還</p>
           </div>
         </div>
@@ -50,7 +50,7 @@ const HeroSection = () => {
           <h2 className="subtitle title-main-share">
             提供您簡單、聰明又安全的<br />數位保險體驗
           </h2>
-          <a href="/" className="btn">立即點擊下載</a>
+          <a href="https://www.cathaylife.com.tw/cathaylife/services/CathayLife-APP" className="btn">立即點擊下載</a>
         </div>
       </div>
 

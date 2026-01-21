@@ -139,7 +139,7 @@
             .lists {
                 width: 100%;
                 @include d-flex(flex-start, flex-start, column);
-                gap: 5px;
+                gap: 10px;
                 height: 165px;
                 overflow-y: auto;
 

@@ -76,6 +76,7 @@
             z-index: 1;
 
             &-header {
+                cursor: pointer;
                 width: 100%;
                 padding: 20px 30px;
                 border-radius: 25px;
@@ -162,6 +163,7 @@
                 padding: 50px 0;
 
                 .procedure-detail-tab {
+                    cursor: pointer;
                     border: none;
                     background-color: inherit;
                     color: var(--sec, #5c5c5c);
@@ -186,7 +188,7 @@
                         @include d-flex(center, center);
                     }
 
-                    &:hover {
+                    &:hover:not(.active) {
                         opacity: 0.8;
                     }
                 }

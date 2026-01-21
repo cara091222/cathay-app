@@ -1,3 +1,230 @@
-.FaqSection {
+.faq-section {
 
+    &-container {
+        margin-top: 50px;
+        @include d-flex (space-between, flex-start);
+        gap: 30px;
+
+        @include media-down ('l') {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @include media-down('sm') {
+            margin-top: 20px;
+        }
+    }
+
+    .faq-tabs-outer {
+        position: relative;
+        flex-shrink: 0;
+
+        @include media-down('l') {
+            width: 100%;
+        }
+    }
+
+    .arrow-left,
+    .arrow-right {
+        display: none; // PC 版完全隱藏
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 60px;
+        z-index: 2;
+        pointer-events: none; // 核心：點擊會穿透到下方的 Tab
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &.is-visible {
+            opacity: 1;
+        }
+
+        @include media-down('l') {
+            display: flex;
+            align-items: center;
+        }
+
+        svg {
+            position: absolute;
+        }
+    }
+
+    .arrow-left {
+        left: 0;
+        background: linear-gradient(90deg, var(--color-main) 30%, rgba(41, 168, 111, 0) 100%);
+        border-radius: 20px 0 0 20px;
+
+        svg {
+            left: 15px;
+        }
+    }
+
+    .arrow-right {
+        right: 0;
+        background: linear-gradient(270deg, var(--color-main) 30%, rgba(41, 168, 111, 0) 100%);
+        border-radius: 0 20px 20px 0;
+
+        svg {
+            right: 15px;
+        }
+    }
+
+    .faq-tabs-wrap {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: var(--color-main);
+        padding: 40px;
+        border-radius: 30px;
+        // min-width: 280px;
+        position: relative;
+        scroll-behavior: smooth;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        @include media-down ('l') {
+            flex-direction: row;
+            overflow-x: auto;
+            padding: 20px;
+            white-space: nowrap;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 20px;
+            gap: 5px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        // 滑動底色塊樣式
+        .tab-active-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); // 加上有質感的貝茲曲線
+            z-index: 0; 
+            box-shadow: 0 4px 10px 0 rgba(2, 131, 61, 0.5);
+        }
+
+        .faq-tab {
+            padding: 10px 30px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+
+            @include media-down ('l') {
+                padding: 10px 15px;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            &.active {
+                background: #fff;
+                color: #000;
+                box-shadow: 0 4px 10px 0 rgba(2, 131, 61, 0.5);
+
+                @include media-down ('l') {
+                    background: none;
+                    box-shadow: none;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    .faq-content {
+        width: 100%;
+        max-width: 915px;
+
+        .faq-item {
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 1px solid #DADADA;
+
+            .item-title {
+                width: 100%;
+                cursor: pointer;
+                box-sizing: border-box;
+                @include d-flex (space-between, center);
+                padding: 20px 25px;
+
+                h4 {
+                    color: #000;
+                    font-weight: 700;
+                    margin: 0;
+                }
+
+                .arrow {
+                    @include d-flex(center, center);
+                    width: 29px;
+                    height: 29px;
+                    border: 1px solid var(--color-black);
+                    border-radius: 50%;
+                    transition: transform 0.3s ease;
+                }
+            }
+
+            .item-content {
+                width: 100%;
+                box-sizing: border-box;
+                // --- 核心改動：使用 Grid 動畫 ---
+                display: grid;
+                grid-template-rows: 0fr; // 初始狀態：高度佔比為 0
+                transition: grid-template-rows 0.3s ease; // 讓高度變化變平滑
+                overflow: hidden;
+
+                // 建立一個內層，確保內容能被正確撐開
+                &::after {
+                    content: "";
+                    min-height: 0;
+                }
+
+                p {
+                    min-height: 0;
+                    white-space: pre-line;
+                    padding: 0 55px 0 25px;
+                    margin: 0;
+                    color: #666;
+                    line-height: 1.6;
+                    transition: padding 0.3s ease;
+                    visibility: hidden;
+
+                    >a {
+                        color: var(--color-black);
+                        text-decoration: underline;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            // 當展開時
+            &.active {
+                border-bottom-color: var(--color-main);
+
+                .item-title .arrow {
+                    transform: rotate(180deg);
+                }
+
+                .item-content {
+                    grid-template-rows: 1fr;
+
+                    p {
+                        padding: 0px 55px 20px 25px;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
 }

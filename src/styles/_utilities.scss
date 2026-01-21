@@ -23,7 +23,7 @@
     padding: 120px 0 ;
 
     @include media-down(lg) {
-        padding: 100px 0 ;
+        padding: 80px 0 ;
     }
 
     @include media-down(sm) {
@@ -35,7 +35,7 @@
     padding: 100px;
 
     @include media-down(lg) {
-        padding: 80px;
+        padding: 60px;
     }
 
     @include media-down(sm) {

@@ -23,10 +23,11 @@ const EventsSection = () => {
       spaceBetween: 30,
       loop: true,
       speed: 800,
-      // autoplay: {
-      //   delay: 3500,
-      //   disableOnInteraction: false,
-      // },
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true, 
+      },
       pagination: {
         clickable: true,
       },
@@ -78,6 +79,18 @@ const EventsSection = () => {
         },
       ],
       contentItems: [
+        {
+          title: "領獎作業與領獎期限：",
+          list: [
+            "本公司將於2025年12月31日前以國泰人壽會員email通知得獎者&寄出獎項。",
+            "獲得獎項為【100 點小樹點(生活)】兌換序號乙組。",
+            "獲得獎項為【100 點小樹點(生活)】兌換序號乙組。",
+            "獲得獎項為【100 點小樹點(生活)】兌換序號乙組。",
+            "獲得獎項為【100 點小樹點(生活)】兌換序號乙組。",
+            "獲得獎項為【100 點小樹點(生活)】兌換序號乙組。",
+            "獲得獎項為【100 點小樹點(生活)】兌換序號乙組。",
+          ],
+        },
         {
           title: "領獎作業與領獎期限：",
           list: [
