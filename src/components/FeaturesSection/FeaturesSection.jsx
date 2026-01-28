@@ -180,7 +180,7 @@ const FeaturesSection = () => {
   }, []);
 
   return (
-    <div className="features-section">
+    <div className="features-section" id="FeaturesSection">
       <div className="container-share">
         <div className="swiper features-swiper" ref={swiperRef}>
           <div className="swiper-wrapper features-wrapper">

@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gen": "node gen.js"
+    "gen": "node gen.js",
+    "build:zip": "npm run build && (cd dist && zip -r ../dist.zip . -x \"__MACOSX/*\" -x \"*/.*\" -x \".*\")"
   },
   "dependencies": {
     "jquery": "^3.7.1",

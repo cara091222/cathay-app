@@ -12,15 +12,15 @@ const Header = () => {
   // 處理點擊導覽連結
   const handleLinkClick = (e, href) => {
     e.preventDefault();
-    setActiveLink(href); // 設定 Active 狀態
-    setIsMenuOpen(false); // 點擊後自動關閉選單 (手機版)
+    setActiveLink(href);
+    setIsMenuOpen(false);
 
-    // 取得目標元素並平滑捲動 (取代 jQuery animate)
     const targetElement = document.querySelector(href);
     if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop,
-        behavior: 'smooth'
+      // 直接使用這個原生的 API
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center' // 這裡設為 center 就能置中
       });
     }
   };
@@ -32,7 +32,6 @@ const Header = () => {
 
   return (
     <header className="app-header">
-      {/* 透過狀態決定 className */}
       <div className={`app-container ${isMenuOpen ? 'menu-show' : ''}`}>
         <div className="app-wrap">
           <div className="app-logo">
@@ -42,10 +41,10 @@ const Header = () => {
           <nav className="app-nav">
             <ul className="nav-wrap">
               {[
-                { href: '#HomeAbout', label: '特色功能' },
-                { href: '#HomeInfo', label: '操作流程' },
-                { href: '#HomeSwiper', label: '活動專區' },
-                { href: '#HomeFAQ', label: '常見問題' },
+                { href: '#FeaturesSection', label: '特色功能' },
+                { href: '#ProcedureSection', label: '操作流程' },
+                { href: '#EventsSection', label: '活動專區' },
+                { href: '#FaqSection', label: '常見問題' },
               ].map((item) => (
                 <li key={item.href} className="main-item">
                   <a

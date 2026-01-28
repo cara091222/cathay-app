@@ -265,7 +265,7 @@ function ProcedureSection() {
   };
 
   return (
-    <div className="procedure-section">
+    <div className="procedure-section" id="ProcedureSection">
       <div className="procedure-section-container">
         <h2 className="title-main-share">操作流程說明</h2>
         {/* 桌機版 */}

@@ -21,10 +21,6 @@
     .app-wrap {
         @include d-flex(space-between, center);
 
-        @include media-down(xl) {
-            padding: 0px 30px;
-        }
-
         @include media-down(sm) {
             padding: 0px 20px;
         }

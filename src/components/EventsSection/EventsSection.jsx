@@ -11,6 +11,7 @@ import "swiper/css/navigation";
 import "./EventsSection.scss";
 import Event1 from "../../assets/events/event-1.webp";
 import Event2 from "../../assets/events/event-2.webp";
+import Bg from "../../assets/images/Vector01.png";
 
 const EventsSection = () => {
   // 1. 將 Swiper 配置數值抽離
@@ -111,9 +112,9 @@ const EventsSection = () => {
   if (!swiperSettings) return null;
 
   return (
-    <div className="events-section">
+    <div className="events-section" id="EventsSection">
       <div className="container-share">
-        <div className="padding-share">
+        <div className="padding-bottom-share">
           <h2 className="title-main-share center">活動專區</h2>
           <Swiper {...swiperSettings} className="events-swiper">
             {eventsData.map((event) => (
@@ -150,6 +151,9 @@ const EventsSection = () => {
             ))}
           </Swiper>
         </div>
+      </div>
+      <div className="bg">
+        <img src={Bg} alt="" />
       </div>
     </div>
   );

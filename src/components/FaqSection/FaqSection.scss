@@ -1,4 +1,6 @@
 .faq-section {
+    position: relative;
+    overflow: hidden;
 
     &-container {
         margin-top: 50px;
@@ -103,6 +105,7 @@
 
         // 滑動底色塊樣式
         .tab-active-bg {
+            display:  none;
             position: absolute;
             top: 0;
             left: 0;
@@ -111,6 +114,10 @@
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); // 加上有質感的貝茲曲線
             z-index: 0; 
             box-shadow: 0 4px 10px 0 rgba(2, 131, 61, 0.5);
+
+            @include media-down ('l') {
+                display: block;
+            }
         }
 
         .faq-tab {
@@ -225,6 +232,49 @@
                     }
                 }
             }
+        }
+    }
+
+    .circle {
+        position: absolute;
+        top: 0;
+        left: 4rem;
+        width: 500px;
+        z-index: -1;
+        
+
+        @include media-down ('jumbo') {
+            width: 450px;
+            top: 4%;
+            left: -5%;
+        }
+
+        @include media-down('lg') {
+            width: 40%;
+            left: -9%;
+        }
+
+        @include media-down('sm') {
+            top: 0;
+        }
+    }
+
+    .bg {
+        position: absolute;
+        top: -8rem;
+        right: -5rem;
+        z-index: -1;
+        width: 58%;
+
+        @include media-down('lg') {
+            top: 18rem;
+            right: -5rem;
+            width: 65%;
+        }
+
+        @include media-down('sm') {
+            top: 12rem;
+            width: 100%;
         }
     }
 }

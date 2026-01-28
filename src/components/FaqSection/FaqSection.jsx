@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./FaqSection.scss";
 
+import FaqCircle from "../../assets/images/circle4.png";
+import Bg from "../../assets/images/Vector02.png";
+
 const FaqSection = () => {
   const faqData = [
     {
@@ -91,9 +94,9 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="faq-section">
+    <div className="faq-section" id="FaqSection">
       <div className="container-share">
-        <div className="padding-share">
+        <div className="padding-bottom-share">
           <h2 className="title-main-share center">常見問題</h2>
 
           <div className="faq-section-container">
@@ -147,7 +150,13 @@ const FaqSection = () => {
           </div>
         </div>
       </div>
-    </section>
+      <div className="circle">
+        <img src={FaqCircle} alt="" />
+      </div>
+      <div className="bg">
+        <img src={Bg} alt="" />
+      </div>
+    </div>
   );
 };
 

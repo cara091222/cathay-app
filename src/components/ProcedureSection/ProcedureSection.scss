@@ -1,16 +1,18 @@
 .procedure-section {
     position: relative;
+    overflow: hidden;
+    
     &-container {
         @include d-flex(center, center, column);
         margin: 0 auto;
         padding: 120px 50px;
 
         @include media-down("xl") {
-            padding: 100px 30px;
+            padding: 80px 30px;
         }
 
         @include media-down("sm") {
-            padding: 50px 20px;
+            padding: 80px 20px;
         }
     }
 
