@@ -24,7 +24,7 @@ const Header = () => {
       // 2. 根據寬度決定對齊位置
       targetElement.scrollIntoView({
         behavior: "smooth",
-        block: isMobile ? "start" : "center",
+        block: isMobile ? "center" : "center",
       });
     }
   };
