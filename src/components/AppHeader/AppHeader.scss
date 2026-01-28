@@ -54,11 +54,11 @@
 
             @include media-down(lg) {
                 flex-direction: column;
-                justify-content: left;
+                justify-content: center;
                 position: absolute;
-                top: -20px;
+                top: 0;
                 right: 0;
-                padding-top: 128px;
+                // padding-top: 128px;
                 width: 100%;
                 height: 100vh;
                 background-color: #ffffff;
