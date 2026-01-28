@@ -121,7 +121,6 @@
                     display: none;
                 }
             }
-
         }
 
         @keyframes moveInLeft {
@@ -166,7 +165,6 @@
                 top: 15%;
                 left: 12%;
             }
-
 
             p {
                 position: relative;
@@ -314,15 +312,12 @@
 
             @include media-down(lg) {
                 @include d-flex(center, center);
-
             }
 
             @include media-between(md, lg) {
                 font-size: 24px;
                 padding: 15px 40px;
             }
-
-
         }
     }
 
@@ -337,6 +332,16 @@
         visibility: visible;
         -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
         mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        pointer-events: none; // 關鍵：讓影片「無法被點擊」，就不會觸發播放介面
+        object-fit: cover; // 確保填滿背景
+
+        // 強制隱藏所有瀏覽器預設的控制介面
+        &::-webkit-media-controls-panel,
+        &::-webkit-media-controls-play-button,
+        &::-webkit-media-controls-start-playback-button {
+            display: none !important;
+            -webkit-appearance: none;
+        }
     }
 
     // 背景圓圈
@@ -401,25 +406,24 @@
         .line-wrap {
             width: 4px;
             height: 130px;
-            background-color: #EFEFEF;
+            background-color: #efefef;
             border-radius: 100rem;
             position: relative;
 
             &::before {
-                content: '';
+                content: "";
                 position: absolute;
                 bottom: 0;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 4px;
                 height: 100%;
-                background: #EFEFEF;
+                background: #efefef;
                 border-radius: 100px;
-
             }
 
             &::after {
-                content: '';
+                content: "";
                 border-radius: 100px;
 
                 position: absolute;
@@ -428,7 +432,7 @@
                 transform: translateX(-50%);
                 width: 4px;
                 height: 100%;
-                background: var(--main-green, #29A86F);
+                background: var(--main-green, #29a86f);
                 animation: scrollLine 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
             }
 
@@ -455,5 +459,4 @@
             }
         }
     }
-
 }

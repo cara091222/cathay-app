@@ -15,7 +15,7 @@ const HeroSection = () => {
     if (video) {
       // 1. 強制靜音（行動裝置自動播放的必備條件）
       video.muted = true;
-      
+
       // 2. 嘗試播放
       const playPromise = video.play();
 
@@ -35,9 +35,20 @@ const HeroSection = () => {
           <div className="phone-left">
             <img src={PhoneLeft} alt="Phone Left" />
           </div>
-          <a href="https://www.cathaylife.com.tw/cathaylife/services/CathayLife-APP" className="phone-right">
-            <img src={PhoneRight} alt="Phone Right" className="phone-right-desk" />
-            <img src={PhoneRightMobile} alt="Phone Right" className="phone-right-mobile" />
+          <a
+            href="https://www.cathaylife.com.tw/cathaylife/services/CathayLife-APP"
+            className="phone-right"
+          >
+            <img
+              src={PhoneRight}
+              alt="Phone Right"
+              className="phone-right-desk"
+            />
+            <img
+              src={PhoneRightMobile}
+              alt="Phone Right"
+              className="phone-right-mobile"
+            />
           </a>
           <div className="desc-wrap">
             <p className="descA">掌握全家人的保單</p>
@@ -48,9 +59,16 @@ const HeroSection = () => {
         <div className="content">
           <h1 className="title">國泰人壽App</h1>
           <h2 className="subtitle title-main-share">
-            提供您簡單、聰明又安全的<br />數位保險體驗
+            提供您簡單、聰明又安全的
+            <br />
+            數位保險體驗
           </h2>
-          <a href="https://www.cathaylife.com.tw/cathaylife/services/CathayLife-APP" className="btn">立即點擊下載</a>
+          <a
+            href="https://www.cathaylife.com.tw/cathaylife/services/CathayLife-APP"
+            className="btn"
+          >
+            立即點擊下載
+          </a>
         </div>
       </div>
 
@@ -59,12 +77,11 @@ const HeroSection = () => {
         ref={videoRef}
         src="/assets/videos/wave_bg.mp4"
         muted
-        playsInline // 關鍵：防止 iOS 自動跳出全螢幕播放器
-        autoPlay    // 備援屬性
+        autoPlay
+        playsInline 
         preload="auto"
         className="hero-video"
         disablePictureInPicture
-        // 注意：這裡移除了 loop
       />
 
       <div className="hero-circle">
