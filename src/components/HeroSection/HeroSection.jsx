@@ -12,23 +12,26 @@ const HeroSection = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
+    // --- 解決網頁打開不在頂端的問題 ---
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    // --- 影片播放邏輯 ---
     const video = videoRef.current;
     if (video) {
-      // 1. 強制靜音（行動裝置自動播放的必備條件）
       video.muted = true;
+      video.playsInline = true; // 確保在 iOS 不會跳出播放器
 
-      // 2. 嘗試播放
       const playPromise = video.play();
-
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          // 如果自動播放被瀏覽器攔截（如省電模式），在此處理
-          console.warn("影片自動播放被攔截，這通常發生在省電模式下:", error);
+          console.warn("自動播放被攔截:", error);
         });
       }
     }
   }, []);
-
   return (
     <div className="hero-section">
       <Marquee />
@@ -76,10 +79,8 @@ const HeroSection = () => {
 
       {/* 背景影片 */}
       <video
-        poster="/assets/images/video-fallback.jpg"
         ref={videoRef}
         src="/assets/videos/wave_bg.mp4"
-        muted
         autoPlay
         playsInline 
         preload="auto"
