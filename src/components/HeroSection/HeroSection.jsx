@@ -80,6 +80,7 @@ const HeroSection = () => {
         preload="auto"
         className="hero-video"
         disablePictureInPicture
+        style={{ pointerEvents: 'none' }}
       />
 
       <div className="hero-circle">

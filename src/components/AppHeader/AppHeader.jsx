@@ -7,7 +7,7 @@ const Header = () => {
   // 狀態：控制漢堡選單是否開啟
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // 狀態：控制哪一個導覽項目是啟用的 (Active)
-  const [activeLink, setActiveLink] = useState("#HomeAbout");
+  const [activeLink, setActiveLink] = useState("");
 
   // 處理點擊導覽連結
   const handleLinkClick = (e, href) => {
