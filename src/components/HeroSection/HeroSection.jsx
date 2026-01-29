@@ -12,12 +12,6 @@ const HeroSection = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    // --- 解決網頁打開不在頂端的問題 ---
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-
     // --- 影片播放邏輯 ---
     const video = videoRef.current;
     if (video) {
