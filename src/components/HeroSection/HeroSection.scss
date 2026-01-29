@@ -379,7 +379,7 @@
     .scroll-down {
         position: absolute;
         right: 40px;
-        bottom: 5rem;
+        bottom: 8rem;
         z-index: 3;
         height: auto;
         @include d-flex(center, center, column);
@@ -458,5 +458,14 @@
                 }
             }
         }
+    }
+
+    // 跑馬燈
+    .marquee {
+        position: absolute;
+        background: inherit;
+        bottom: 0;
+        width: 100%;
+        z-index: 2;
     }
 }

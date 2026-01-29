@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import Swiper from "swiper";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
 
-// 導入樣式 
+// 導入樣式
 import "swiper/css";
 import "swiper/css/pagination";
-import "./FeaturesSection.scss";
+import "./FeaturesSectionB.scss";
 
 // 圖片導入
 import Feature1 from "../../assets/features/features1.webp";
@@ -108,62 +108,39 @@ const FeaturesSection = () => {
 
         on: {
           progress: function (swiper) {
-            // 1. 改用 window.innerWidth 確保偵測的是螢幕寬度
-            const w = window.innerWidth;
-            // 2. 將參數判斷移出迴圈，增加效能
-            let trans, scaleM, threshold;
+            const windowWidth = window.innerWidth;
 
-            if (w >= 1500) {
-              // 超大螢幕
-              trans = 53;
-              scaleM = 0.13;
-              threshold = 2.5;
-            } else if (w >= 1400) {
-              // 中大螢幕
-              trans = 60;
-              scaleM = 0.13;
-              threshold = 2.5;
-            } else if (w >= 1200) {
-              // 中大螢幕
-              trans = 65;
-              scaleM = 0.13;
-              threshold = 2.5;
-            } else if (w >= 992) {
-              // 一般桌機
-              trans = 53;
-              scaleM = 0.13;
-              threshold = 2.5;
-            } else if (w >= 768) {
-              // 平板
-              trans = 60;
-              scaleM = 0.15;
-              threshold = 2.5;
-            } else if (w >= 414) {
-              // 大手機
-              trans = 60;
-              scaleM = 0.18;
-              threshold = 1.5;
-            } else {
-              // 小型手機
-              trans = 68;
-              scaleM = 0.22;
-              threshold = 1.5;
-            }
+            // 1. 定義斷點與對應的倍數 (由大到小)，數字越小間距越大
+            const configs = [
+              { min: 1440, multiplier: 10 }, // 大桌機
+              { min: 1200, multiplier: 28 }, // 一般桌機
+              { min: 1024, multiplier: 15 }, // 平板橫向 / 小筆電
+              { min: 768, multiplier: 20 }, // 平板直向
+              { min: 480, multiplier: 25  }, // 大手機
+              { min: 0, multiplier: 25 }, // 預設小手機
+            ];
 
-            // 3. 執行投影片變形
+            // 2. 找到第一個符合當前寬度的倍數
+            const config = configs.find((c) => windowWidth >= c.min);
+            const offsetMultiplier = config ? config.multiplier : 55;
+
             for (let i = 0; i < swiper.slides.length; i++) {
               const slide = swiper.slides[i];
               const progress = slide.progress;
               const absProgress = Math.abs(progress);
 
-              const scale = 1 - absProgress * scaleM;
-              const translateX = progress * trans;
-              const zIndex = 10 - Math.floor(absProgress);
-              const opacity = absProgress > threshold ? 0 : 1;
+              // 計算縮放 (Scale) 與 透明度 (Opacity)
+              const scale = 1 - Math.min(absProgress, 1) * 0.2;
+              const opacity = 1 - Math.min(absProgress, 1) * 0.3;
+
+              // 3. 計算位移
+              const offset = progress * offsetMultiplier;
+
+              // 執行變換
+              slide.style.transform = `translateX(${offset}%) scale(${scale})`;
+              // 提示：考慮將 px 改為 %，有時候在響應式佈局下 % 會比 px 更靈活
 
               slide.style.opacity = opacity.toString();
-              slide.style.zIndex = zIndex.toString();
-              slide.style.transform = `translate3d(${translateX}%, 0, 0) scale(${scale})`;
             }
           },
           setTransition: function (swiper, speed) {
@@ -182,27 +159,25 @@ const FeaturesSection = () => {
 
   return (
     <div className="features-section" id="FeaturesSection">
-      <div className="container-share">
-        <div className="swiper features-swiper" ref={swiperRef}>
-          <div className="swiper-wrapper features-wrapper">
-            {featuresData.map((item, index) => (
-              <div className="swiper-slide features-slider" key={index}>
-                <h2 className="title-main-share">{item.title}</h2>
-                <h3 className="title-medium-share">{item.subtitle}</h3>
-                <div className="img-box">
-                  <img className="mockup" src={item.img} alt={item.title} />
-                  {item.icon && (
-                    <div className="icon-wrap" style={item.iconStyle}>
-                      <img src={item.icon} alt="" className="icon-img" />
-                    </div>
-                  )}
-                </div>
+      <div className="swiper features-swiper" ref={swiperRef}>
+        <div className="swiper-wrapper features-wrapper">
+          {featuresData.map((item, index) => (
+            <div className="swiper-slide features-slider" key={index}>
+              <h2 className="title-main-share">{item.title}</h2>
+              <h3 className="title-medium-share">{item.subtitle}</h3>
+              <div className="img-box">
+                <img className="mockup" src={item.img} alt={item.title} />
+                {item.icon && (
+                  <div className="icon-wrap" style={item.iconStyle}>
+                    <img src={item.icon} alt="" className="icon-img" />
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-          {/* 分頁器 */}
-          <div className="swiper-pagination"></div>
+            </div>
+          ))}
         </div>
+        {/* 分頁器 */}
+        <div className="swiper-pagination"></div>
       </div>
       <div className="features-bg">
         <img src={FeatureBg} alt="" />

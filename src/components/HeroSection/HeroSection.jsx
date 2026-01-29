@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./HeroSection.scss";
+import Marquee from '../Marquee/Marquee.jsx';
 
 // 圖片導入
 import PhoneLeft from "../../assets/images/phone_left.webp";
@@ -30,6 +31,7 @@ const HeroSection = () => {
 
   return (
     <div className="hero-section">
+      <Marquee />
       <div className="hero-section-container">
         <div className="phone-area">
           <div className="phone-left">

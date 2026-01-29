@@ -1,0 +1,75 @@
+.marquee {
+    width: 100%;
+    overflow: hidden; 
+    padding: 40px 0;
+    background: #fff; 
+
+    &-container {
+        display: flex;
+        width: max-content;
+        flex-wrap: nowrap;
+    }
+
+    // 動畫
+    &-group {
+        @include d-flex(flex-start, center);
+        gap: 40px; 
+        padding-right: 40px; 
+        animation: scroll-left 30s linear infinite;
+        
+        // 懸停暫停
+        &:hover {
+            // animation-play-state: paused; 
+        }
+    }
+
+    .awards-item {
+        @include d-flex(center, stretch);
+        gap: 20px;
+        max-height: 68px;
+        flex-shrink: 0; // 防止項目被擠壓
+
+        .awards-content {
+            .year {
+                white-space: nowrap;
+                @include d-flex(flex-start, center);
+                gap: 20px;
+                color: #666;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: normal;
+                letter-spacing: 0.5px;
+                padding-bottom: 5px;
+                position: relative;
+
+                .line {
+                    width: 100%;
+                    height: 2px;
+                    background: var(--color-main);
+                }
+            }
+
+            .title {
+                word-break: keep-all;
+                white-space: nowrap;
+                color: var(--color-black, #000);
+                font-size: 24px;
+                font-weight: 700;
+                line-height: normal;
+                letter-spacing: 0.5px;
+                padding-bottom: 7px;
+                border-bottom: 2px solid var(--color-main, #4CA164);
+            }
+        }
+    }
+}
+
+// 動畫定義
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

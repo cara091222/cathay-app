@@ -1,11 +1,13 @@
 import AppHeader from './components/AppHeader/AppHeader.jsx';
 import HeroSection from './components/HeroSection/HeroSection.jsx';
 import FeaturesSection from './components/FeaturesSection/FeaturesSection.jsx';
+import FeaturesSectionB from './components/FeaturesSectionB/FeaturesSectionB.jsx';
 import ProcedureSection from './components/ProcedureSection/ProcedureSection.jsx';
 import EventsSection from './components/EventsSection/EventsSection.jsx';
 import FaqSection from './components/FaqSection/FaqSection.jsx';
 import NoticeSection from './components/NoticeSection/NoticeSection.jsx';
 import FooterSection from './components/FooterSection/FooterSection.jsx';
+import Marquee from './components/Marquee/Marquee.jsx';
 
 
 function App() {
@@ -16,11 +18,13 @@ function App() {
       <AppHeader />
       <HeroSection />
       <FeaturesSection />
+      {/* <FeaturesSectionB /> */}
       <ProcedureSection />
       <EventsSection />
       <FaqSection />
       <NoticeSection />
       <FooterSection />
+      {/* <Marquee /> */}
     </div>
   )
 }

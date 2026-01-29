@@ -200,10 +200,16 @@
 
                     li {
                         color: var(--color-grey);
-                        list-style: decimal !important; // 明確指定為十進制數字
-                        list-style-position: inside !important;
+                        list-style: decimal !important;
+                        list-style-position: outside !important;
+                        margin-left: 30px;
+                        white-space: pre-line;
                     }
                 }
+            }
+
+            .lists-item + .lists-item {
+                margin-top: 15px;
             }
         }
     }
