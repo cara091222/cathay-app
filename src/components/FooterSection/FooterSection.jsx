@@ -3,31 +3,37 @@ import "./FooterSection.scss";
 
 const FooterSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const lastScrollY = useRef(0); // 記錄上一次滾動位置，不觸發 re-render
+  // 用來鎖定「正在回頂部」的狀態，避免 scroll 事件干擾
+  const isScrollingToTop = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // 判斷邏輯：
-      // 1. 往下滾動 (current > last) 且超過 100px 時顯示
-      // 2. 往上滾動或回到頂部時隱藏
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+      // 1. 如果正在滑順回頂部
+      if (isScrollingToTop.current) {
+        if (currentScrollY <= 10) { // 接近頂部時解鎖
+          isScrollingToTop.current = false;
+          setIsVisible(false);
+        }
+        return;
+      }
+
+      // 2. 只要滾動超過 100px 就顯示，否則隱藏
+      if (currentScrollY > 100) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
-
-      lastScrollY.current = currentScrollY;
     };
 
-    // 使用 passive: true 提升捲動效能
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    // 關鍵：點擊瞬間先強制設為 false，配合 CSS 快速淡出
+    // 點擊瞬間：先鎖定狀態並立即隱藏
+    isScrollingToTop.current = true;
     setIsVisible(false);
 
     window.scrollTo({
@@ -37,12 +43,12 @@ const FooterSection = () => {
   };
 
   return (
-    <div className="footer-section">
+    <footer className="footer-section">
       <p>
         © 國泰人壽保險股份有限公司 Cathay Life Insurance | All rights reserved.
       </p>
 
-      {/* 浮動icon 容器 */}
+      {/* 浮動 Icon 容器 */}
       <div className={`icon-wrap ${isVisible ? "show" : ""}`}>
         <a
           href="https://cathay.app.link/"
@@ -124,7 +130,7 @@ const FooterSection = () => {
           </svg>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

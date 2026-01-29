@@ -76,6 +76,7 @@ const HeroSection = () => {
 
       {/* 背景影片 */}
       <video
+        poster="/assets/images/video-fallback.jpg"
         ref={videoRef}
         src="/assets/videos/wave_bg.mp4"
         muted
